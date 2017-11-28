@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {addTodo} from '../../actions/todoActions';
+import RaisedButton from 'material-ui/RaisedButton';
+                
+import TextField from 'material-ui/TextField';
 
 class AddTodo extends Component {
     render() {
         return (
             <div>
-                <input ref="todoInput" type="text"/>
-                <button
+                
+                <TextField
+                    hintText="Things to commit you do"
+                    floatingLabelText="Your todo"
+                    type="text"
+                    ref="fancyInput"
+                    />
+                <RaisedButton 
+                    label="Primary" 
+                    primary={true} 
                     onClick={()=>{
-                        this.props.dispatch(addTodo(this.refs.todoInput.value))
-                        this.refs.todoInput.value = '';
+                        this.props.dispatch(addTodo(this.refs.fancyInput.input.value))
+                        this.refs.fancyInput.input.value = '';
                     }}
-                >Add</button>
+                />
             </div>
         );
     }
